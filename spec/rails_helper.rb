@@ -6,7 +6,13 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 
-SimpleCov.start "rails"
+SimpleCov.start 'rails' do
+  add_filter "app/channels/application_cable/channel.rb"
+  add_filter "app/channels/application_cable/connection.rb"
+  add_filter "app/jobs/application_job.rb"
+  add_filter "app/mailers/application_mailer.rb"
+  add_filter "app/helpers/application_helper.rb"
+end
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
