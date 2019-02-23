@@ -8,9 +8,9 @@ describe "Location API" do
 
   expect(response).to be_successful
 
-  location = JSON.parse(response.body)
+  data = JSON.parse(response.body)
 
-  expect(location["city"]).to eq(location.city)
-  expect(location["state"]).to eq(location.state)
+  expect(data[0]["city"]).to eq(location.city)
+  expect(data[0]["state"]).to eq(location.state)
   end
 end
