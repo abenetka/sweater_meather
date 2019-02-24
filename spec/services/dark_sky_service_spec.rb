@@ -2,8 +2,9 @@ require 'rails_helper'
 
 describe DarkSkyService do
   it 'exists', :vcr do
-    location = create(:location, city: "Denver", state: "CO")
-    geo_service = GeocodingService.new(location)
+    city = "Denver"
+    state = "CO"
+    geo_service = GeocodingService.new(city, state)
     lat = geo_service.get_latitude
     long = geo_service.get_longitude
     weather_service = DarkSkyService.new
