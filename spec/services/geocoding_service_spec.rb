@@ -2,18 +2,20 @@ require 'rails_helper'
 
 describe GeocodingService do
   it 'exists', :vcr do
-    location = create(:location, city: "Denver", state: "CO")
-    service = GeocodingService.new(location)
+    city = "Denver"
+    state = "CO"
+    service = GeocodingService.new(city, state)
 
     expect(service).to be_a(GeocodingService)
   end
 
   it 'returns latitude and longitude of location', :vcr do
-    location = create(:location, city: "Denver", state: "CO")
+    city = "Denver"
+    state = "CO"
     latitude = "39.7392358"
     longitude = "-104.990251"
 
-    service = GeocodingService.new(location)
+    service = GeocodingService.new(city, state)
     lat = service.get_latitude
     long = service.get_longitude
 
