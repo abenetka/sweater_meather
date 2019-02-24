@@ -5,15 +5,7 @@ class GeocodingService
   end
 
   def get_coordinates
-    get_json("/maps/api/geocode/json")
-  end
-
-  def get_latitude
-    get_coordinates[:results].first[:geometry][:location][:lat]
-  end
-
-  def get_longitude
-    get_coordinates[:results].first[:geometry][:location][:lng]
+    get_json("/maps/api/geocode/json")[:results].first[:geometry][:location]
   end
 
   private
