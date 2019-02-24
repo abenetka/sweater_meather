@@ -44,11 +44,11 @@ class Forecast
   end
 
   def location_service
-    GeocodingService.new(@city, @state)
+     @_location_service ||= GeocodingService.new(@city, @state)
   end
 
   def weather_service
-    DarkSkyService.new.get_weather(@latitude, @longitude)
+     @_weather_service ||= DarkSkyService.new.get_weather(@latitude, @longitude)
   end
 
 end
