@@ -6,7 +6,8 @@ class CurrentWeather
               :humidity,
               :temperature,
               :time,
-              :visibility
+              :visibility,
+              :date
 
   def initialize(attributes)
     @summary = attributes[:summary]
