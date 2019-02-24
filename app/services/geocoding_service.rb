@@ -1,6 +1,7 @@
 class GeocodingService
-  def initialize(location)
-    @location = location
+  def initialize(city, state)
+    @city = city
+    @state = state
   end
 
   def get_coordinates
@@ -25,7 +26,7 @@ class GeocodingService
   def conn
     Faraday.new('https://maps.googleapis.com') do |faraday|
       faraday.params[:key] = ENV['google_maps_api_key']
-      faraday.params[:address] = "#{@location.city}, #{@location.state}"
+      faraday.params[:address] = "#{@city}, #{@state}"
       faraday.adapter Faraday.default_adapter
     end
   end
