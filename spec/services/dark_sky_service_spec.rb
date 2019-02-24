@@ -5,8 +5,8 @@ describe DarkSkyService do
     city = "Denver"
     state = "CO"
     geo_service = GeocodingService.new(city, state)
-    lat = geo_service.get_latitude
-    long = geo_service.get_longitude
+    lat = geo_service.get_coordinates[:lat]
+    long = geo_service.get_coordinates[:lng]
     weather_service = DarkSkyService.new
 
     weather = weather_service.get_weather(lat, long)

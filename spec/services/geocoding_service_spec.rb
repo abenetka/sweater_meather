@@ -16,8 +16,8 @@ describe GeocodingService do
     longitude = "-104.990251"
 
     service = GeocodingService.new(city, state)
-    lat = service.get_latitude
-    long = service.get_longitude
+    lat = service.get_coordinates[:lat]
+    long = service.get_coordinates[:lng]
 
     expect(lat).to eq(latitude.to_f)
     expect(long).to eq(longitude.to_f)
