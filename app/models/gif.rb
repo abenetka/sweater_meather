@@ -10,6 +10,7 @@ class Gif
     @icon = giphy_search_term(daily_weather[:icon])
     @url = get_giphy_url
     @copyright = Time.at(daily_weather[:time]).strftime("%Y")
+    @images = []
   end
 
   def giphy_search_term(icon)
@@ -22,6 +23,20 @@ class Gif
 
   def giphy_service
     @_giphy_service ||= GiphyService.new.get_giphy_json(@icon)
+  end
+
+  # def giphy_hash
+  #   {
+  #     data: {
+  #       images: []
+  #
+  #     }
+  #   }
+  #
+  # end
+
+  def images
+    {time: @time, summary: @summary, url: @url}
   end
 
 
