@@ -71,5 +71,4 @@ describe "Forecast API" do
     expect(result[:data][:attributes][:daily_weather].first).to have_key(:summary)
   end
 
-
 end
