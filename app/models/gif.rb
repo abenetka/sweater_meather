@@ -16,7 +16,6 @@ class Gif
   end
 
   def get_giphy_url
-    binding.pry
     giphy_service[:data][0][:images][:downsized][:url]
   end
 
