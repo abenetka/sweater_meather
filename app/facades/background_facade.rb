@@ -9,11 +9,11 @@ class BackgroundFacade
   end
 
   def find_longitude
-    location_service.get_coordinates[:lng]
+    location_service[:lng]
   end
 
   def find_latitude
-    location_service.get_coordinates[:lat]
+    location_service[:lat]
   end
 
   def split_location
@@ -21,7 +21,7 @@ class BackgroundFacade
   end
 
   def location_service
-    @_location_service ||= GeocodingService.new(split_location[0], split_location[1])
+    @_location_service ||= GeocodingService.new.get_coordinates(split_location[0], split_location[1])
   end
 
   def flickr_service
