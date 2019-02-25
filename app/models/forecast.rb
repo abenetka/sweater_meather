@@ -19,7 +19,6 @@ class Forecast
     location_service.get_coordinates[:lat]
   end
 
-
   def get_hourly_weather
     data = weather_service[:hourly][:data]
     data.map do |raw_hour|
