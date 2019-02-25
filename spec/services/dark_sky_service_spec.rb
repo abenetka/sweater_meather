@@ -4,9 +4,9 @@ describe DarkSkyService do
   it 'exists', :vcr do
     city = "Denver"
     state = "CO"
-    geo_service = GeocodingService.new(city, state)
-    lat = geo_service.get_coordinates[:lat]
-    long = geo_service.get_coordinates[:lng]
+    geo_service = GeocodingService.new.get_coordinates(city, state)
+    lat = geo_service[:lat]
+    long = geo_service[:lng]
     weather_service = DarkSkyService.new
 
     weather = weather_service.get_weather(lat, long)
