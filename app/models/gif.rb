@@ -2,7 +2,8 @@ class Gif
   attr_reader :time,
               :summary,
               :url,
-              :copyright
+              :copyright,
+              :images
 
   def initialize(daily_weather)
     @time = daily_weather[:time]
@@ -25,18 +26,12 @@ class Gif
     @_giphy_service ||= GiphyService.new.get_giphy_json(@icon)
   end
 
-  # def giphy_hash
-  #   {
-  #     data: {
-  #       images: []
-  #
-  #     }
-  #   }
-  #
-  # end
-
   def images
-    {time: @time, summary: @summary, url: @url}
+    {
+      time: @time,
+      summary: @summary,
+      url: @url
+    }
   end
 
 
