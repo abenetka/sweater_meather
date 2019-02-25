@@ -9,11 +9,9 @@ describe "Background API" do
     expect(response).to be_successful
 
     result = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
-    expect(result[:data][:attributes]).to have_key(:latitude)
-    expect(result[:data][:attributes]).to have_key(:longitude)
-    expect(result[:data][:attributes]).to have_key(:city)
-    expect(result[:data][:attributes]).to have_key(:state)
-    expect(result[:data][:attributes]).to have_key(:flickr_url)
+
+    expect(result[:data]).to have_key(:id)
+    expect(result[:data][:attributes]).to have_key(:title)
+    expect(result[:data][:attributes]).to have_key(:background_url)
   end
 end
