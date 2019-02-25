@@ -1,7 +1,7 @@
 class GiphyService
 
   def get_giphy_json(summary)
-    response = conn.get("/search?q=#{summary}&limit=5&offset=0&rating=G&lang=en")
+    response = conn.get("v1/gifs/search?q=#{summary}&limit=5&offset=0&rating=G&lang=en")
     JSON.parse(response.body, symbolize_names: true)
   end
 

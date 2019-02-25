@@ -21,7 +21,7 @@ class Gif
   end
 
   def get_giphy_url
-    giphy_service
+    giphy_service[:data][0][:images][:downsized][:url]
   end
 
 end
