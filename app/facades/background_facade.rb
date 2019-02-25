@@ -3,8 +3,9 @@ class BackgroundFacade
     @location = location
   end
 
-  def get_photos
-    location_service.
+  def get_background
+    data = flickr_service[:photos][:photo][0]
+    Background.new(data)
   end
 
   def find_longitude
@@ -15,12 +16,18 @@ class BackgroundFacade
     location_service.get_coordinates[:lat]
   end
 
+  def split_location
+    @location.split(', ')
+  end
+
   def location_service
-    @_location_service ||= GeocodingService.new(@city, @state)
+    @_location_service ||= GeocodingService.new(split_location[0], split_location[1])
   end
 
   def flickr_service
-    @_flickr_service ||= FlickrService.new.get_photo_json(@latitude, @longitude)
+    lat = find_latitude
+    long = find_longitude
+    @_flickr_service ||= FlickrService.new.get_photo_json(lat, long)
   end
 
 end
