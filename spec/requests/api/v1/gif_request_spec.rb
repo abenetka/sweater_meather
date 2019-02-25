@@ -5,14 +5,16 @@ describe "Gifs API" do
     location = "Denver, CO"
 
     get "/api/v1/gifs?location=#{location}"
-
     expect(response).to be_successful
 
     result = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
-    expect(result[:data]).to have_key(:images)
-    expect(result[:data][:attributes]).to have_key(:time)
-    expect(result[:data][:attributes]).to have_key(:summary)
-    expect(result[:data][:attributes]).to have_key(:url)
+
+    expect(result).to have_key(:data)
+    expect(result[:data][0]).to have_key(:type)
+    expect(result[:data][0][:type]).to eq("gif")
+    expect(result[:data][0][:attributes]).to have_key(:time)
+    expect(result[:data][0][:attributes]).to have_key(:summary)
+    expect(result[:data][0][:attributes]).to have_key(:url)
   end
+
 end
