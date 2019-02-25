@@ -18,5 +18,5 @@ class Background
   def formatted_background_url
     "https://farm#{@farm}.staticflickr.com/#{@server}/#{@id}_#{@secret}.jpg"
   end
-  
+
 end
