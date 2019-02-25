@@ -8,13 +8,13 @@ describe "Gifs API" do
     expect(response).to be_successful
 
     result = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
-    expect(result).to have_key(:data)
+
     expect(result[:data][0]).to have_key(:type)
     expect(result[:data][0][:type]).to eq("gif")
-    expect(result[:data][0][:attributes]).to have_key(:time)
-    expect(result[:data][0][:attributes]).to have_key(:summary)
-    expect(result[:data][0][:attributes]).to have_key(:url)
+    expect(result[:data][0][:attributes]).to have_key(:images)
+    expect(result[:data][0][:attributes][:images]).to have_key(:time)
+    expect(result[:data][0][:attributes][:images]).to have_key(:summary)
+    expect(result[:data][0][:attributes][:images]).to have_key(:url)
   end
 
 end
