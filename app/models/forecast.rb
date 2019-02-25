@@ -12,11 +12,11 @@ class Forecast
   end
 
   def find_longitude
-    location_service.get_coordinates[:lng]
+    location_service[:lng]
   end
 
   def find_latitude
-    location_service.get_coordinates[:lat]
+    location_service[:lat]
   end
 
   def get_hourly_weather
@@ -43,7 +43,7 @@ class Forecast
   end
 
   def location_service
-     @_location_service ||= GeocodingService.new(@city, @state)
+     @_location_service ||= GeocodingService.new.get_coordinates(@city, @state)
   end
 
   def weather_service
