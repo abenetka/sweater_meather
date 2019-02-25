@@ -13,8 +13,7 @@ describe Forecast do
     forecast = Forecast.new(attributes)
     expect(forecast).to be_a(Forecast)
   end
-
-  it '#get_hourly_weather' do
+  xit '#get_hourly_weather' do
     attributes =
           {
             :latitude=>"39.7392358",
@@ -26,7 +25,7 @@ describe Forecast do
     forecast = Forecast.new(attributes)
     expect(forecast.get_hourly_weather).to be_a(Forecast)
   end
-  it '#get_daily_weather' do
+  xit '#get_daily_weather' do
     attributes =
           {
             :latitude=>"39.7392358",
@@ -38,7 +37,7 @@ describe Forecast do
     forecast = Forecast.new(attributes)
     expect(forecast.get_daily_weather).to be_a(Forecast)
   end
-  it '#get_current_weather' do
+  xit '#get_current_weather' do
     attributes =
           {
             :latitude=>"39.7392358",
