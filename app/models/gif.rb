@@ -1,6 +1,12 @@
 class Gif
 
-  def initialize(attributes)
+  def initialize(daily_weather)
+    binding.pry
+
+  end
+
+  def giphy_service
+    @_giphy_service ||= GiphyService.new.get_giphy_json(summary)
   end
   # attr_reader :farm,
   #             :server,
@@ -22,8 +28,5 @@ class Gif
   #   "https://farm#{@farm}.staticflickr.com/#{@server}/#{@id}_#{@secret}.jpg"
   # end
 
-  def giphy_service
-    @_giphy_service ||= GiphyService.new.get_giphy_json(summary)
-  end
 
 end
