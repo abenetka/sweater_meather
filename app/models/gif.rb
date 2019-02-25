@@ -4,10 +4,24 @@ class Gif
     binding.pry
 
   end
-
-  def giphy_service
-    @_giphy_service ||= GiphyService.new.get_giphy_json(summary)
+  
+  def get_giphy
+    giphy_service[:data].map do |raw_gif|
+        Gif.new(raw_gif)
+    end
   end
+
+  # def summary
+  #      summary = @daily_weather[:data].map do |day|
+  #       day[:summary]
+  #   end
+  #     summary.gsub('', '+')
+  #   end
+
+    def giphy_service
+      @_giphy_service ||= GiphyService.new.get_giphy_json(summary)
+    end
+
   # attr_reader :farm,
   #             :server,
   #             :id,
