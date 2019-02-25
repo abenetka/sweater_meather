@@ -1,27 +1,28 @@
 class Gif
+  attr_reader :time,
+              :summary,
+              :url,
+              :icon
 
   def initialize(daily_weather)
     @time = daily_weather[:time]
-    @summary = giphy_summary(daily_weather[:summary])
+    @summary = daily_weather[:summary]
+    @icon = giphy_search_term(daily_weather[:icon])
     @url = get_giphy_url
   end
 
-  def get_giphy
-    giphy_service[:data].map do |raw_gif|
-        Gif.new(raw_gif)
-    end
-  end
-
-  def giphy_summary(summary)
-    summary.gsub(" ","+")
-  end
-
-  def giphy_service
-    @_giphy_service ||= GiphyService.new.get_giphy_json(@summary)
+  def giphy_search_term(icon)
+    icon.gsub("-","+")
   end
 
   def get_giphy_url
+    binding.pry
     giphy_service[:data][0][:images][:downsized][:url]
   end
+
+  def giphy_service
+    @_giphy_service ||= GiphyService.new.get_giphy_json(@icon)
+  end
+
 
 end
