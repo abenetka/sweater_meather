@@ -11,7 +11,7 @@ class Gif
     @icon = giphy_search_term(daily_weather[:icon])
     @url = get_giphy_url
     @copyright = Time.at(daily_weather[:time]).strftime("%Y")
-    @images = []
+    @images = [images]
   end
 
   def giphy_search_term(icon)
