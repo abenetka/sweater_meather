@@ -23,5 +23,17 @@ class Gif
     @_giphy_service ||= GiphyService.new.get_giphy_json(@icon)
   end
 
+  def images_hash
+    {
+  data: {
+    images: [
+      {
+        time: @ActiveModel,
+        summary: @summary,
+        url: @url
+      }
+  end
+
+
 
 end
