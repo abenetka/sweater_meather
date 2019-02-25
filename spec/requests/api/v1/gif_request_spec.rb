@@ -7,7 +7,7 @@ describe "Gifs API" do
     get "/api/v1/gifs??location=#{location}"
 
     expect(response).to be_successful
-g
+
     result = JSON.parse(response.body, symbolize_names: true)
 
     expect(result[:data]).to have_key(:images)
