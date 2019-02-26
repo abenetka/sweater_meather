@@ -12,14 +12,4 @@ describe "Users API" do
      expect(result).to have_key(:id)
      expect(result[:attributes]).to have_key(:api_key)
    end
-
-#
-#    POST /api/v1/sessions
-# Content-Type: application/json
-# Accept: application/json
-#
-# {
-#   "email": "whatever@example.com",
-#   "password": "password"
-# }
 end
