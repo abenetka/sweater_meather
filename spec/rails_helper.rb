@@ -7,6 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'vcr'
 require 'webmock/rspec'
+require 'securerandom'
 
 SimpleCov.start 'rails' do
   add_filter "app/channels/application_cable/channel.rb"
@@ -15,7 +16,7 @@ SimpleCov.start 'rails' do
   add_filter "app/mailers/application_mailer.rb"
   add_filter "app/helpers/application_helper.rb"
   add_filter "app/models/application_record.rb"
-end 
+end
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -31,6 +32,8 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.filter_sensitive_data('<darksky>') { ENV['darksky_api_secret']}
   config.filter_sensitive_data('<geocoding>') { ENV['google_maps_api_key']}
+  config.filter_sensitive_data('<flickr>') { ENV['flickr_api_key']}
+  config.filter_sensitive_data('<giphy>') { ENV['giphy_api_key']}
 end
 # Add additional requires below this line. Rails is not loaded until this point!
 
