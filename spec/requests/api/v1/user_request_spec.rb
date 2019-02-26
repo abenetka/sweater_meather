@@ -13,13 +13,13 @@ describe "Users API" do
      expect(result[:attributes]).to have_key(:api_key)
    end
 
-#
-#    POST /api/v1/sessions
-# Content-Type: application/json
-# Accept: application/json
-#
-# {
-#   "email": "whatever@example.com",
-#   "password": "password"
-# }
+   it 'doesnt send user info without correct info', :vcr do
+     email = "wanda@aol.com"
+     password = "12345"
+     not_password = "wanda"
+     post "/api/v1/users?email=#{email}&password=#{password}&password_confirmation=#{not_password}"
+
+     expect(response).to be_successful
+     expect(response.body).to eq("You messed up")
+   end
 end
