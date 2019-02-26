@@ -7,7 +7,6 @@ class FavoriteSerializer
     end
   end
 
-
   def self.favorite_hash(location)
     favorite_hash = {}
     favorite_hash[:location] = location
