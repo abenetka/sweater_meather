@@ -15,7 +15,7 @@ describe "Favorites API" do
      expect(response).to be_successful
    end
 
-   it 'doesnt posts city and api_key', :vcr do
+   it 'doesnt post city and api_key', :vcr do
      email = "wanda@aol.com"
      password = "12345"
      post "/api/v1/users?email=#{email}&password=#{password}&password_confirmation=#{password}"
@@ -29,5 +29,36 @@ describe "Favorites API" do
      expect(response).to_not be_successful
      expect(status).to eq(401)
    end
+
+   it 'gets a list of favorite location', :vcr do
+     email = "wanda@aol.com"
+     password = "12345"
+     post "/api/v1/users?email=#{email}&password=#{password}&password_confirmation=#{password}"
+     result = JSON.parse(response.body, symbolize_names: true)[:data]
+
+     api_key = result[:attributes][:api_key]
+     location = "Denver, CO"
+     post "/api/v1/favorites?location=#{location}&api_key=#{api_key}"
+     location_1 = "Denver, CO"
+     location_2 = "Chicago, IL"
+     post "/api/v1/favorites?location=#{location_1}&api_key=#{api_key}"
+     post "/api/v1/favorites?location=#{location_2}&api_key=#{api_key}"
+
+     get "/api/v1/favorites?api_key=#{api_key}"
+     result = JSON.parse(response.body, symbolize_names: true)
+
+     expect(response).to be_successful
+     expect(status).to eq(200)
+     expect(result[:data][:type]).to eq("favorite")
+     expect(result[:data][:attributes]).to have_key(:favorites)
+     expect(result[:data][:attributes][:favorites].first).to have_key(:location)
+     expect(result[:data][:attributes][:favorites].first).to have_key(:current_weather)
+     expect(result[:data][:attributes][:favorites].first[:current_weather]).to have_key(:time)
+     expect(result[:data][:attributes][:favorites].first[:current_weather]).to have_key(:summary)
+     expect(result[:data][:attributes][:favorites].first[:current_weather]).to have_key(:icon)
+     expect(result[:data][:attributes][:favorites].first[:current_weather]).to have_key(:temperature)
+   end
+
+
 
 end

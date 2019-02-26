@@ -6,6 +6,11 @@ class Api::V1::FavoritesController < ApplicationController
     else
       render json: {}, status: :unauthorized
     end
-
   end
+
+  def index
+    user = User.find_by(api_key: params[:api_key])
+    render json: FavoriteSerializer.new(user)
+  end
+
 end
