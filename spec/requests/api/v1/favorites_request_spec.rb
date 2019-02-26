@@ -46,12 +46,17 @@ describe "Favorites API" do
 
      get "/api/v1/favorites?api_key=#{api_key}"
      result = JSON.parse(response.body, symbolize_names: true)
-     binding.pry
 
      expect(response).to be_successful
      expect(status).to eq(200)
-     expect(result).to have_key(:location)
-     expect(result).to have_key(:current_weather)
+     expect(result[:data][:type]).to eq("favorite")
+     expect(result[:data][:attributes]).to have_key(:favorites)
+     expect(result[:data][:attributes][:favorites].first).to have_key(:location)
+     expect(result[:data][:attributes][:favorites].first).to have_key(:current_weather)
+     expect(result[:data][:attributes][:favorites].first[:current_weather]).to have_key(:time)
+     expect(result[:data][:attributes][:favorites].first[:current_weather]).to have_key(:summary)
+     expect(result[:data][:attributes][:favorites].first[:current_weather]).to have_key(:icon)
+     expect(result[:data][:attributes][:favorites].first[:current_weather]).to have_key(:temperature)
    end
 
 
