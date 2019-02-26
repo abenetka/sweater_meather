@@ -16,4 +16,16 @@ describe "Sessions API" do
      expect(result[:attributes]).to have_key(:api_key)
    end
 
+   it 'doesnt start session', :vcr do
+     email = "wanda@aol.com"
+     password = "12345"
+     bad_password = "bad"
+     user = User.create(email: "wanda@aol.com", password: "12345", password_confirmation: "12345")
+
+     post "/api/v1/sessions?email=#{email}&password=#{bad_password}"
+
+     expect(response).to be_successful
+     expect(response.body).to eq("Bad")
+   end
+
 end
