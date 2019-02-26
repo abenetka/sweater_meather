@@ -15,6 +15,7 @@ describe "Forecast API" do
     expect(result[:data][:attributes]).to have_key(:current_weather)
     expect(result[:data][:attributes]).to have_key(:daily_weather)
     expect(result[:data][:attributes]).to have_key(:hourly_weather)
+    # expect to not be nil
   end
 
   it 'gets current weather', :vcr do
