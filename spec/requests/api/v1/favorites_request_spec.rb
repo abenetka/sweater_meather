@@ -59,6 +59,23 @@ describe "Favorites API" do
      expect(result[:data][:attributes][:favorites].first[:current_weather]).to have_key(:temperature)
    end
 
+   it 'deletes a favorite location', :vcr do
+     email = "wanda@aol.com"
+     password = "12345"
+     post "/api/v1/users?email=#{email}&password=#{password}&password_confirmation=#{password}"
+     result = JSON.parse(response.body, symbolize_names: true)[:data]
 
+     api_key = result[:attributes][:api_key]
+     location = "Denver, CO"
+     post "/api/v1/favorites?location=#{location}&api_key=#{api_key}"
+     location_1 = "Denver, CO"
+     location_2 = "Chicago, IL"
+     post "/api/v1/favorites?location=#{location_1}&api_key=#{api_key}"
+     post "/api/v1/favorites?location=#{location_2}&api_key=#{api_key}"
 
+     delete "/api/v1/favorites?location=#{location}&api_key=#{api_key}"
+
+     expect(response).to be_successful
+     expect(status).to eq(200)
+   end
 end
