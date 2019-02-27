@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Background do
-  it 'exists' do
+  it 'exists', :vcr do
     attributes =
     {
       :id=>"39910698973",
@@ -14,7 +14,7 @@ describe Background do
     background = Background.new(attributes)
     expect(background).to be_a(Background)
   end
-  it 'can format a url' do
+  it 'can format a url', :vcr do
     attributes =
     {
       :id=>"39910698973",
