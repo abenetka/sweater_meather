@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe DailyWeather do
-  it "has attributes" do
+  it "exists", :vcr do
     attributes =
     {
         :summary=>"Mostly cloudy throughout the day.",
@@ -12,7 +12,7 @@ describe DailyWeather do
         :time=>1550991600
       }
     daily_weather = DailyWeather.new(attributes)
-
+    expect(daily_weather).to be_a(DailyWeather)
     expect(daily_weather.summary).to eq("Mostly cloudy throughout the day.")
     expect(daily_weather.precipProbability).to eq(0.02)
     expect(daily_weather.precipType).to eq("snow")
