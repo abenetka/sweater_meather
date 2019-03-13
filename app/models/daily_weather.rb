@@ -4,7 +4,8 @@ class DailyWeather
               :precipType,
               :temperatureLow,
               :temperatureHigh,
-              :date
+              :date,
+              :dayofweek
 
   def initialize(attributes)
     @summary = attributes[:summary]
@@ -13,6 +14,7 @@ class DailyWeather
     @temperatureLow = attributes[:temperatureLow]
     @temperatureHigh = attributes[:temperatureHigh]
     @date = Time.at(attributes[:time]).strftime("%-m/%-d")
+    @dayofweek = Time.at(attributes[:time]).strftime("%A")
   end
 
 end

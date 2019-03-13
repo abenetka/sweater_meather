@@ -6,7 +6,7 @@ class HourlyWeather
   def initialize(attributes)
     @icon = attributes[:icon]
     @temperature = attributes[:temperature]
-    @time = Time.at(attributes[:time]).strftime("%-a %I %p")
+    @time = Time.at(attributes[:time]).strftime("%I %p")
   end
 
 
