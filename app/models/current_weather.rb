@@ -16,7 +16,7 @@ class CurrentWeather
     @uvIndex = attributes[:uvIndex]
     @humidity = attributes[:humidity]
     @temperature = attributes[:temperature]
-    @time = Time.at(attributes[:time])
+    @time = Time.at(attributes[:time]).strftime("%I:%M %p")
     @visibility = attributes[:visibility]
     @date = Time.at(attributes[:time]).strftime("%-m/%-d")
   end
