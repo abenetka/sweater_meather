@@ -9,7 +9,6 @@ class DailyWeather
               :icon
 
   def initialize(attributes)
-    binding.pry
     @summary = attributes[:summary]
     @precipProbability = attributes[:precipProbability]
     @precipType = attributes[:precipType]
